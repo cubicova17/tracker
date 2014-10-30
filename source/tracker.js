@@ -14,10 +14,9 @@ function tracker(app) {
 	};
 
 	app.route('/api/track').get(validate, function (req, res, next) {
-    var website = req.query.partner;
-    client.incr(website);
-    client.incr(website + moment().utc().toDate().toString().substring(0, 10));
-    client.hsetnx("websites", website, true);
+    client.incr(req.query.partner);
+    client.incr(website + moment().utc().toDate().toString().substring(0, 10)); //write to website+date key e.g.: "preply.com10-09-2014"
+    client.hsetnx("websites", req.query.partner, true);
     return res.send(200);
 	});
 }

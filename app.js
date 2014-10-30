@@ -14,5 +14,5 @@ require('./source/tracker')(app);
 require('./source/statistics')(app);
 
 app.listen(port, function () {
-	logger.info('Preply tracker listening on port ' + port + ' ' + env);
+	logger.info('Preply(fork from likeastore.com) tracker listening on port ' + port + ' ' + env);
 });
