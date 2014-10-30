@@ -1,24 +1,18 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var morgan = require('morgan');
 
 var logger = require('./source/utils/logger');
-
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 var port = process.env.PORT || 3006;
-
-if (env === 'development' || env === 'production') {
-	app.use(morgan());
-}
+var cors = require('cors');
 
 app.use(bodyParser.json());
-app.use(methodOverride());
-
+app.use(cors());
 require('./source/health')(app);
 require('./source/tracker')(app);
+require('./source/statistics')(app);
 
 app.listen(port, function () {
-	logger.info('Likeastore tracker listening on port ' + port + ' ' + env);
+	logger.info('Preply tracker listening on port ' + port + ' ' + env);
 });
