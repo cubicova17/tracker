@@ -15,6 +15,7 @@
     "node-logentries": "~0.1.4",
     "redis": "^0.12.1",
     "request": "~2.36.0",
+    "respawn": "^0.4.2",
     "seismo-client": "0.0.4",
     "underscore": "~1.6.0"
   },
