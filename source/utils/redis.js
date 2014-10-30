@@ -1,6 +1,14 @@
-var redis = require("redis"), client = redis.createClient(19215, 'pub-redis-19215.us-east-1-1.1.ec2.garantiadata.com', {});
+var env = process.env.NODE_ENV || 'development';
+if(env != 'development'){
+  var redis = require("redis"), client = redis.createClient(19215, process.env.REDIS_URL, {});
+  client.auth(process.env.REDIS_PASS)
+}else{
+  var redis = require("redis"), client = redis.createClient();
+
+}
+
 client.on("error", function (err) {
-    logger.error("Error " + err);
+  logger.error("Error " + err);
 });
-client.auth("GCS5hGbeHuEjqWUZ")
+
 module.exports = client;
